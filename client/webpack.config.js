@@ -20,22 +20,23 @@ module.exports = () => {
     plugins: [
       // generate HTML file with injected scripts
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: './index.html',
+        title: 'Webpack Plugin',
       }),
 
       // generate manifest.json file
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
-        name: 'PWA Text Editor',
-        short_name: 'Text Editor',
+        name: 'Just Another Text Editor',
+        short_name: 'J.A.T.E',
         description: 'A text editor Progressive Web Application',
         start_url: '/',
         background_color: '#225ca3',
         theme_color: '#225ca3',
         icons: [
           {
-            src: path.resolve('src/icons/icon.png'),
+            src: path.resolve('src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
           },
         ],
@@ -43,7 +44,8 @@ module.exports = () => {
 
       // generate a service worker using Workbox
       new InjectManifest({
-        swRc: './src/service-worker.js',
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
       }),
     ],
 
