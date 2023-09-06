@@ -32,12 +32,14 @@ module.exports = () => {
         short_name: 'J.A.T.E',
         description: 'A text editor Progressive Web Application',
         start_url: '/',
+        publicPath: '/',
         background_color: '#225ca3',
         theme_color: '#225ca3',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
           },
         ],
       }),

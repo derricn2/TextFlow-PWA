@@ -18,12 +18,15 @@ const initdb = async () =>
 // TODO: Add logic to a method that accepts some content and adds it to the database
 // store content in IndexedDB
 export const putDb = async (content) => {
-  const jateDb = await openDB();
+  // connection to database and version to use
+  const jateDb = await openDB('jate', 1);
+  // new transaction and specify database and data privileges
   const tx = jateDb.transaction('jate', 'readwrite');
+  // open desired object store
   const store = tx.objectStore('jate');
 
   // add content to object store
-  const request = store.put({ content });
+  const request = store.put({ id: 1, value: content });
 
   // wait for transaction to complete
   const result = await request;
@@ -40,7 +43,7 @@ export const getDb = async () => {
   // open object store
   const store = tx.objectStore('jate');
 
-  // retrieve all contetnt from object store
+  // retrieve all content from object store
   const request = store.getAll();
 
   // wait for the transaction to complete
